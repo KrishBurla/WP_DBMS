@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Details</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="/js/viewEvent.js" defer></script>
+    <style>
+        .event-details-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .detail-section {
+            margin-bottom: 30px;
+        }
+        .detail-row {
+            display: flex;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        .detail-label {
+            font-weight: bold;
+            min-width: 200px;
+            color: #555;
+        }
+        .detail-value {
+            flex: 1;
+        }
+        .requirements-section {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <div class="event-details-container">
+            <h1>Event Details</h1>
+            <div id="eventDetails"></div>
+        </div>
+    </div>
+</body>
+</html>

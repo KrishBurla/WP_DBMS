@@ -1,0 +1,482 @@
+body {
+  font-family: Arial, sans-serif;
+  background-image: url('https://portal.svkm.ac.in/usermgmt/resources/images/login-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  position: relative;
+  margin: 0;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: #2c3e50; /* Fallback color */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  transition: all 0.3s ease-in-out;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: -1;
+}
+
+.login-container,
+.form-container,
+.status-container,
+.dashboard-container,
+.home-container {
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 20px;
+  margin: 0 auto;
+  text-align: center;
+  transition: all 0.3s ease-in-out;
+}
+
+.login-container { width: 400px; }
+.form-container, .home-container { width: 40%; }
+.status-container, .dashboard-container { width: 80%; }
+
+h1 {
+  font-size: 26px;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 18px;
+  text-align: left;
+}
+
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 16px;
+  color: #555;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+textarea {
+  resize: vertical;
+  height: 120px;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  font-size: 17px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #007BFF;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.error {
+  color: red;
+  font-size: 13px;
+  display: none;
+  margin-top: 5px;
+}
+
+.home-container h1 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.home-container p {
+  font-size: 17px;
+  margin-bottom: 20px;
+  color: #555;
+}
+
+.home-link {
+  display: block;
+  margin: 10px 0;
+  padding: 12px;
+  background-color: #007BFF;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 17px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.home-link:hover {
+  background-color: #0056b3;
+}
+
+/* Table Styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th,
+td {
+  border: 1px solid #ccc;
+  padding: 12px;
+  text-align: center;
+  font-size: 15px;
+}
+
+th {
+  background-color: #007BFF;
+  color: white;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Buttons */
+.approve-btn,
+.deny-btn {
+  padding: 10px 16px;
+  font-size: 15px;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #fff;
+  margin: 0 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.approve-btn {
+  background-color: #28a745;
+}
+
+.approve-btn:hover {
+  background-color: #218838;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.deny-btn {
+  background-color: #dc3545;
+}
+
+.deny-btn:hover {
+  background-color: #c82333;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 400px;
+  text-align: center;
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-content textarea {
+  width: 100%;
+  height: 100px;
+  padding: 10px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: none;
+  box-sizing: border-box;
+}
+
+.modal-actions {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.modal-actions button {
+  width: 48%;
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Back link */
+.back-link {
+  display: block;
+  margin-top: 20px;
+  text-align: center;
+  text-decoration: none;
+  color: #007BFF;
+  font-weight: bold;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+/* Loading Spinner */
+.loading-state {
+  text-align: center;
+  padding: 40px;
+}
+
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border-top: 4px solid #3498db;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 20px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Error State */
+.error-state {
+  padding: 20px;
+  background-color: #ffebee;
+  border-left: 4px solid #f44336;
+  margin: 20px 0;
+  text-align: center;
+}
+
+.error-state p {
+  color: #f44336;
+  margin-bottom: 20px;
+}
+
+/* Detail Groups */
+.detail-group {
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.detail-group label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+  color: #555;
+}
+
+/* Action Buttons */
+.action-buttons {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.back-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #2196F3;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.back-btn:hover {
+  background-color: #0b7dda;
+}
+
+/* Parallax for larger screens */
+@media (min-width: 768px) {
+  body {
+    background-attachment: scroll;
+  }
+  .parallax {
+    background-attachment: fixed;
+  }
+}
+
+/* Dashboard Header */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.admin-link {
+  display: block;
+  width: 100px;
+  margin: 10px 0;
+  padding: 12px;
+  background-color: #ec1a1a;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 17px;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Table Styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+}
+
+th, td {
+  padding: 12px 15px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #4CAF50;
+  color: white;
+  font-weight: bold;
+}
+
+/* Button Styles */
+.actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.view-btn, .approve-btn, .deny-btn {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: opacity 0.3s;
+  white-space: nowrap;
+}
+
+.view-btn {
+  background-color: #2196F3;
+  color: white;
+}
+
+.approve-btn {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.deny-btn {
+  background-color: #f44336;
+  color: white;
+}
+
+.view-btn:hover, .approve-btn:hover, .deny-btn:hover {
+  opacity: 0.8;
+}
+
+/* Status Styles (keep your existing status colors) */
+.status-pending {
+  color: #FFA500;
+  font-weight: bold;
+}
+
+.status-approved {
+  color: #008000;
+  font-weight: bold;
+}
+
+.status-rejected {
+  color: #FF0000;
+  font-weight: bold;
+}
+
+/* Admin comment styling */
+.admin-comment {
+  max-width: 200px;
+  white-space: normal;
+  word-wrap: break-word;
+  font-size: 0.9em;
+  color: #555;
+  font-style: italic;
+}
+
+/* Status table adjustments */
+table {
+  table-layout: fixed;
+}
+
+/* Set column widths */
+th:nth-child(1) { width: 15%; }  /* Event Name */
+th:nth-child(2) { width: 10%; }  /* Date Filled */
+th:nth-child(3) { width: 15%; }  /* Venue */
+th:nth-child(4) { width: 10%; }  /* Date From */
+th:nth-child(5) { width: 10%; }  /* Date To */
+th:nth-child(6) { width: 10%; }  /* Status */
+th:nth-child(7) { width: 30%; }  /* Admin Notes */
+
+/* Admin feedback styling */
+.admin-feedback {
+  background-color: #f8f9fa;
+  border-left: 4px solid #4CAF50;
+  padding: 15px;
+  margin: 15px 0;
+  border-radius: 4px;
+}
+
+.admin-feedback h3 {
+  margin-top: 0;
+  color: #4CAF50;
+}

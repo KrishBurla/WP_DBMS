@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="/js/adminDashboard.js" defer></script>
+    <style>
+        .actions {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        
+        .view-btn, .approve-btn, .deny-btn {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: opacity 0.3s;
+            white-space: nowrap;
+        }
+        
+        .view-btn {
+            background-color: #2196F3;
+            color: white;
+        }
+        
+        .approve-btn {
+            background-color: #4CAF50;
+            color: white;
+        }
+        
+        .deny-btn {
+            background-color: #f44336;
+            color: white;
+        }
+        
+        .view-btn:hover, .approve-btn:hover, .deny-btn:hover {
+            opacity: 0.8;
+        }
+
+        td,th{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+            <h1>Admin Dashboard</h1>
+        <p>Review and manage submitted event forms below:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Form ID</th>
+                    <th>Event Name</th>
+                    <th>Submitted By</th>
+                    <th>Date Submitted</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="formTableBody">
+                <!-- Rows will be dynamically populated -->
+            </tbody>
+        </table>
+        <a href="index.html" class="admin-link">Logout</a>
+    </div>
+
+    <!-- Modal for adding comments -->
+    <div id="commentModal" class="modal">
+        <div class="modal-content">
+            <h2>Add Comment</h2>
+            <textarea id="commentText" placeholder="Enter your comment here..."></textarea>
+            <div class="modal-actions">
+                <button id="submitComment" class="approve-btn">Submit</button>
+                <button id="cancelComment" class="deny-btn">Cancel</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
